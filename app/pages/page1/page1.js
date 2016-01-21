@@ -6,21 +6,33 @@ import {Page} from 'ionic/ionic';
 })
 export class Page1 {
   constructor() {
-    var latlng = {
+    //modeled after http://www.joshmorony.com/ionic-2-how-to-use-google-maps-geolocation-video-tutorial/
+    
+    
+    console.log("try to fetch map!");
+    
+    
+    this.map = null;
+  
+    this.loadMap();
+  }
+  
+  loadMap(){
+    
+    let latlng = {
       //Copenhagen coordinates :) 
       lat:55.6761,
       lng:12.5683
     };
     
-    var mapOptions = {
+    let mapOptions = {
       center: latlng,
-      zoom: 15//, 
-      //mapTypeId: google.map.MapTypeId.ROADMAP
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
 
     };
     
-    console.log("try to fetch map!");
     this.map = new google.maps.Map(document.getElementById("map"),mapOptions);
-    
+
   }
 }
