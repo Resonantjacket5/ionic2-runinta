@@ -61382,9 +61382,7 @@
 	            zoom: 15,
 	            mapTypeId: google.maps.MapTypeId.ROADMAP
 	        };
-	        /*
-	        this.map = new google.maps.Map(document.getElementById("map"),mapOptions);
-	        */
+	        this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
 	    };
 	    Page1 = __decorate([
 	        ionic_1.Page({
