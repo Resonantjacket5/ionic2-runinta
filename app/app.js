@@ -11,11 +11,9 @@ import {TabsPage} from './pages/tabs/tabs';
 export class MyApp {
   constructor(platform: Platform) {
     this.root = TabsPage;
-    console.log("hi");
-    console.log(google);
+
     platform.ready().then(() => {
       // Do any necessary cordova or native calls here now that the platform is ready
-      
     });
   }
 }

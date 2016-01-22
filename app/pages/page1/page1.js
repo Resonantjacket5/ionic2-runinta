@@ -10,8 +10,6 @@ export class Page1 {
     
     
     console.log("try to fetch map!");
-    console.log(google);
-    
     
     this.map = null;
   
