@@ -10,7 +10,7 @@ export class LoginPage {
   constructor() {
     
     this.ref=new Firebase("https://runinto.firebaseio.com");
-    this.ref.onAuth(authDataCallback);
+    this.ref.onAuth(this.authDataCallback);
     console.log(Firebase);
     
     
@@ -69,48 +69,15 @@ export class LoginPage {
     }
   }
   
-}
-    
-    
-//    
-//    this.loginForm= form.group({
-//      email: ["", Validators.required],
-//      password: ["", Validators.required]
-//    });
-//    
-//    
-//    
-//    this.user = {
-//      email:"",
-//      password:""
-//    }//*/
-  
-  
   // Create a callback which logs the current auth state
-  function authDataCallback(authData) {
+  authDataCallback(authData) {
     if (authData) {
       console.log("User " + authData.uid + " is logged in with " + authData.provider);
     } else {
       console.log("User is logged out");
     }
   }
-
-
-  /*
   
-
- 
-
-  //console.log(usersRef);
-
-  function doLogin(event)
-  {
-    console.log("hiajsiodjf");
-
-  }
-
+}
   
-  //*/
-
   
-  //console.log($firebaseAuth);
