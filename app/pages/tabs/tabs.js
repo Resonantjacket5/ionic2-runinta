@@ -8,8 +8,9 @@ import {LoginPage} from '../login/login';
   templateUrl: 'build/pages/tabs/tabs.html'
 })
 export class TabsPage {
-  constructor(nav: NavController) {
 
+  constructor(nav: NavController) {
+    
     // this tells the tabs component which Pages
     // should be each tab's root Page
     this.tab1Root = Page1;
@@ -18,7 +19,23 @@ export class TabsPage {
     
     
     this.nav = nav;
-    this.presentLogin();
+    
+    this.ref=new Firebase("https://runinto.firebaseio.com");
+    
+    
+    //this.ref.onAuth(this.authDataCallback);
+    
+    let self = this;
+    
+    this.ref.onAuth(function(authData){
+      if (authData) {
+        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+
+      } else {
+        console.log("User is logged out");
+        self.presentLogin();
+      }
+    });
   }
   
   
@@ -28,5 +45,21 @@ export class TabsPage {
       console.log(data);
     });
     this.nav.present(loginModal);
+  }
+  
+  
+  // currently unable to reference 'this' as TabsPage
+  // even through use of apply or call to the funciton
+  // as Firebase requires a callback with only one variable
+  // Create a callback which logs the current auth state
+  authDataCallback(authData) {
+    if (authData) {
+      console.log("User " + authData.uid + " is logged in with " + authData.provider);
+      this.presentLogin();
+      
+    } else {
+      console.log("User is logged out");
+      this.presentLogin();
+    }
   }
 }
