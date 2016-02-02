@@ -1,4 +1,6 @@
-import {Page} from 'ionic/ionic';
+import {Page, ViewController} from 'ionic/ionic';
+//import {TabsPage} from './pages/tabs/tabs';
+ 
 //import {AuthService}
 //import {Component,FormBuilder, Validators} from 'angular2/common';
 
@@ -7,7 +9,9 @@ import {Page} from 'ionic/ionic';
 })
 
 export class LoginPage {
-  constructor() {
+  constructor( viewCtrl: ViewController) {
+    
+    this.viewCtrl = viewCtrl;
     
     this.ref=new Firebase("https://runinto.firebaseio.com");
     this.ref.onAuth(this.authDataCallback);
@@ -41,38 +45,31 @@ export class LoginPage {
   
   doLogin () {
     
+    let self = this;
+    
     this.ref.authWithPassword({
       email : this.user.email,
       password: this.user.password
-    }, this.authHandler);
-    
-    /*
-      this is for $authWithPassword by 
-      firebaseAngular but currently using
-      basic firebase
+    }, function (error, authData){
       
-    .then( function(authData) {
-      alert("login success ");
-      console.log("Logged in as:", authData.uid);
-      // go to
-      //$state.go('tab.dash',{inherit:false});
-    }).catch(function(error) {
-      console.error("Authentication failed:", error);
-    });//*/
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfuly with payload:", authData);
+        self.dismiss(authData);
+      }
+    });
   }
   
-  authHandler (error, authData) {
-    if(error) {
-      console.log("Login Failed!", error);
-    } else {
-      console.log("Authenticated successfuly with payload:", authData);
-    }
+  dismiss(data) {
+    this.viewCtrl.dismiss(data); 
   }
   
   // Create a callback which logs the current auth state
   authDataCallback(authData) {
     if (authData) {
       console.log("User " + authData.uid + " is logged in with " + authData.provider);
+      
     } else {
       console.log("User is logged out");
     }

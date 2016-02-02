@@ -12,8 +12,7 @@ import {AuthService} from './providers/auth-service/auth-service';
 })
 export class MyApp {
   constructor(platform: Platform) {
-    this.root = LoginPage;//*/ 
-      //TabsPage;
+    this.root =  TabsPage;
 
     platform.ready().then(() => {
       // Do any necessary cordova or native calls here now that the platform is ready
