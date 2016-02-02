@@ -3,15 +3,58 @@
 </ion-navbar>
 <ion-content>
   <ion-list>
-    <ion-input>
-      <ion-label>Username</ion-label>
-      <input type="text" value="">
+    <ion-input (input)="searchMovie(text)">
+      <ion-label>Movie</ion-label>
+      <input type="text">
     </ion-input>
-    <ion-input>
+    <ion-input (input)="emailInput($event)">
+      <ion-label>Email</ion-label>
+      <input type="email">
+    </ion-input>
+    <ion-input (input)="passwordInput($event)">
       <ion-label>Password</ion-label>
-      <input type="password" value="">
+      <input type="password">
     </ion-input>
-    <button>
+    <ion-label>{{movie.title}}</ion-label>
+    <ion-label>{{user.email}} {{user.password}}</ion-label>
+    <button (click)="doLogin()">
+      Login
     </button>
   </ion-list>
 </ion-content>
+
+  
+  
+<!--
+  <form [ngFormModel] = "loginForm" (submit)="doLogin($event)">
+    
+    <ion-input>
+      <ion-label>Username</ion-label>
+      <input type="text" ngControl="email" value="">
+    </ion-input>
+    <ion-input>
+      <ion-label>Password</ion-label>
+      <input type="password" ngControl="password" value="">
+    </ion-input>
+    <button type="submit">
+      Login
+    </button>
+  </form>
+-->
+  
+  
+<!--
+  <ion-list>
+    <ion-input>
+      <ion-label>Username</ion-label>
+      <input type="text" (input)='user.username' value="">
+    </ion-input>
+    <ion-input>
+      <ion-label>Password</ion-label>
+      <input type="password" (input)='user.password' value="">
+    </ion-input>
+    <button (click)="doLogin()">
+      Login
+    </button>
+  </ion-list>
+-->

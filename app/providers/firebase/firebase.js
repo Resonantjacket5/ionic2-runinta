@@ -2,21 +2,16 @@ import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
 
 /*
-  Generated class for the AuthService provider.
+  Generated class for the Firebase provider.
 
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class AuthService {
+export class FirebaseService {
   constructor(http: Http) {
     this.http = http;
-    this.data = null;
-    
-    console.log("auth service hi");
-    let usersRef = new Firebase("https://runinto.firebaseio.com");
-    //node_modules/firebase-angular2/bundles/firebase-angular2-all.umd.js
-    return usersRef;
+    this.data = http.get("https://cdn.firebase.com/js/client/2.3.0/firebase.js");
   }
 
   load() {

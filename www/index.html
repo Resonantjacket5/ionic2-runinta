@@ -39,21 +39,27 @@
   <!-- this Ionic's root component and where the app will load -->
   <ion-app></ion-app>
 
+  <!-- AngularJS (shouldn't really need this should be included in bundle.js, but without it angularFire can't find angular) -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+
+  
+  <!-- Firebase -->
+  <script src="https://cdn.firebase.com/js/client/2.3.0/firebase.js"></script>
+  
+  <!-- Angular2-Firebase-->
+<!--  <script src="node_modules/firebase-angular2/bundles/firebase-angular2-all.umd.js"></script>-->
+  
+  <!-- AngularFire -->
+  <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
+  
+  
   <!-- Google Map api note: must be placed before build/js/app.bundle.js or faced with black screen wall-->
   <script src="https://maps.google.com/maps/api/js?key=AIzaSyDS7p83lt7G_Bt5n236hk4cJ7nyBhXGCF4"></script>
   
   <script src="cordova.js"></script>
   <script src="build/js/app.bundle.js"></script>
   
-  <!-- AngularJS (shouldn't really need this should be included in bundle.js, but without it angularFire can't find angular) -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
-
   
-  <!-- Firebase -->
-    <script src="https://cdn.firebase.com/js/client/2.3.0/firebase.js"></script>
-    
-  <!-- AngularFire -->
-  <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
 
 
   
