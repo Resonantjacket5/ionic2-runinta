@@ -19,10 +19,10 @@ node_modules/
 tmp/
 temp/
 www/build/
+platforms/ 
+plugins/
 $RECYCLE.BIN/
 
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
-
-platforms
