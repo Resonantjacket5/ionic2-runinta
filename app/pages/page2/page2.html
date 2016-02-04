@@ -6,5 +6,19 @@
 </ion-navbar>
 
 <ion-content class="page2">
-
+  <ion-list>
+    <ion-item *ngFor="#friend of friends">
+      {{friend.name}}  
+      {{friend.age}}
+    </ion-item>
+    <ion-item>
+      GPS coordinates: {{coordinates.latitude}}, {{coordinates.longitude}}
+    </ion-item>
+    <button (click)="askUserLocation()">
+      Give current location
+    </button>
+    <button (click)="fetchFriends()">
+      Fetch Friends
+    </button>
+  </ion-list>
 </ion-content>

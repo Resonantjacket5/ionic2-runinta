@@ -15,8 +15,6 @@ export class LoginPage {
     
     this.ref=new Firebase("https://runinto.firebaseio.com");
     this.ref.onAuth(this.authDataCallback);
-    console.log(Firebase);
-    
     
     this.movie = {
       title: "Dinosaur"
