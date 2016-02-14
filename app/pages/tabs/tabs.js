@@ -12,6 +12,7 @@ import {AuthService} from '../../providers/auth-service/auth-service';
 export class TabsPage {
 
   constructor(nav: NavController, auth: AuthService) {
+
     
     // this tells the tabs component which Pages
     // should be each tab's root Page
@@ -36,7 +37,7 @@ export class TabsPage {
     this.ref.onAuth(function(authData){
       if (authData) {
         console.log("User " + authData.uid + " is logged in with " + authData.provider);
-        self.auth.saveUserData(authData);
+        self.auth.saveUserData(authData)
       } else {
         console.log("User is logged out");
         self.presentLogin();
