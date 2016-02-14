@@ -1,0 +1,22 @@
+
+<ion-navbar *navbar>
+  <ion-title>
+    Add Friend
+  </ion-title>
+</ion-navbar>
+
+<ion-content class="addfriend">
+  <ion-list>
+    <ion-input (input)="searchFriend($event)">
+      <ion-label>Password</ion-label>
+      <input type="text">
+    </ion-input>
+    <ion-item *ngFor="#friend of friends">
+      {{friend.name}}  
+      {{friend.age}}
+    </ion-item>
+    <button (click)="logOut()">
+      Exit
+    </button>
+  </ion-list>
+</ion-content>

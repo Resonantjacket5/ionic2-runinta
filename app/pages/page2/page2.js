@@ -1,5 +1,6 @@
-import {Page} from 'ionic/ionic';
+import {Page, Modal, NavController} from 'ionic/ionic';
 import {AuthService} from '../../providers/auth-service/auth-service';
+import {AddFriendPage} from '../page2/AddFriend/addfriend';
 
 @Page({
   templateUrl: 'build/pages/page2/page2.html'
@@ -8,11 +9,10 @@ import {AuthService} from '../../providers/auth-service/auth-service';
 })
 export class Page2 {
   
-  
-  
-  constructor(auth: AuthService) {
+  constructor(nav: NavController, auth: AuthService) {
     var _this =this;
     
+    this.nav = nav;
     this.auth = auth;
     this.friends = [];
     this.friends = [
@@ -69,7 +69,7 @@ export class Page2 {
     //*/
   };
   
-  askUserLocation() {
+  askUserLocation = function () {
     navigator.geolocation.getCurrentPosition(this.onSuccess,this.onError);
     this.pushLocation();
   };
@@ -85,16 +85,14 @@ export class Page2 {
   // to push 
   // should move to auth-service or stand alone Service later
   pushLocation =function() {
+    
     let geoFire = new GeoFire(this.auth.getFireBaseRef().child("geofire");
     console.log(geoFire);
-    
-    
     geoFire.set(this.auth.getUserID(), [ _this.coordinates.latitude, _this.coordinates.longitude]).then(function() {
       console.log("Provided key has been added to GeoFire");
     }, function (error) {
       console.log("Error: "+error);
-    });//*/
-    
+    });
     /*
     geoFire.set("some_key", [37.785326, -122.405696]).then(function() {
       console.log("Provided key has been added to GeoFire");
@@ -107,8 +105,18 @@ export class Page2 {
     console.log("error"); 
   };
 
+
+
   logOut = function () {
     let fireRef = new Firebase("https://runinto.firebaseio.com");
     fireRef.unauth();
+  };
+
+  
+
+  
+  openAddFriendModal = function () {
+    let AddFriendModal = Modal.create(AddFriendPage);
+    this.nav.present(AddFriendModal);
   };
 }
