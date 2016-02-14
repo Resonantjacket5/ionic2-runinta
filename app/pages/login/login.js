@@ -1,36 +1,27 @@
 import {Page, ViewController} from 'ionic/ionic';
 //import {TabsPage} from './pages/tabs/tabs';
- 
-//import {AuthService}
+import {AuthService} from '../../providers/auth-service/auth-service';
+
 //import {Component,FormBuilder, Validators} from 'angular2/common';
 
 @Page({
-  templateUrl: 'build/pages/login/login.html'
+  templateUrl: 'build/pages/login/login.html',
+  providers: [AuthService]
 })
 
 export class LoginPage {
-  constructor( viewCtrl: ViewController) {
+  constructor( viewCtrl: ViewController, auth: AuthService) {
     
     this.viewCtrl = viewCtrl;
-    
-    this.ref=new Firebase("https://runinto.firebaseio.com");
+    this.auth = auth;
+    //this.ref=new Firebase("https://runinto.firebaseio.com");
+    this.ref = this.auth.getFireRef();
     this.ref.onAuth(this.authDataCallback);
-    
-    this.movie = {
-      title: "Dinosaur"
-    }
     
     this.user = {
       email:"",
       password:""
     }
-  }
-  
-  searchMovie(text){
-    console.log(text);
-    console.log(text.value);
-    console.log("hi");
-    //this.movie.title = event.target.value;
   }
   
   emailInput(event){
@@ -43,6 +34,9 @@ export class LoginPage {
   
   doLogin () {
     
+    // must set self to this
+    // so one can access the login.js this parameter
+    // inside the callback
     let self = this;
     
     this.ref.authWithPassword({
@@ -53,14 +47,20 @@ export class LoginPage {
       if (error) {
         console.log("Login Failed!", error);
       } else {
-        console.log("Authenticated successfuly with payload:", authData);
-        self.dismiss(authData);
+        console.log("Authenticated successfuly with payload:", authData);     
+        
+        
+        // when login correctly, save user Data and dismiss login modal
+        self.auth.saveUserData(authData);
+        self.dismiss(/*authData*/);
       }
     });
   }
   
-  dismiss(data) {
-    this.viewCtrl.dismiss(data); 
+  // commented out sending data to tabs page
+  // from login page using dismiss and OnDismiss
+  dismiss(/*data*/) {
+    this.viewCtrl.dismiss(/*data*/); 
   }
   
   // Create a callback which logs the current auth state

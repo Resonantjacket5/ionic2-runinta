@@ -3,10 +3,6 @@
 </ion-navbar>
 <ion-content>
   <ion-list>
-    <ion-input (input)="searchMovie(text)">
-      <ion-label>Movie</ion-label>
-      <input type="text">
-    </ion-input>
     <ion-input (input)="emailInput($event)">
       <ion-label>Email</ion-label>
       <input type="email">
@@ -15,7 +11,6 @@
       <ion-label>Password</ion-label>
       <input type="password">
     </ion-input>
-    <ion-label>{{movie.title}}</ion-label>
     <ion-label>{{user.email}} {{user.password}}</ion-label>
     <button (click)="doLogin()">
       Login

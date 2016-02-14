@@ -11,14 +11,34 @@ import {Http} from 'angular2/http';
 export class AuthService {
   constructor(http: Http) {
     this.http = http;
-    this.data = null;
-    
-    console.log("auth service hi");
-    let usersRef = new Firebase("https://runinto.firebaseio.com");
+    this.userData;
+    console.log("auth Service constructor called");
+    this.ref = new Firebase("https://runinto.firebaseio.com");
     //node_modules/firebase-angular2/bundles/firebase-angular2-all.umd.js
-    return usersRef;
+    return this;
   }
+  
+  getFireRef = function () {
+    return this.ref;
+  };
 
+  getCurrentUserRef = function() {
+    return this.ref.child("users").child(this.userData.uid);
+  };
+  
+  getUsersRef = function() {
+    return this.ref.child('users');
+  };
+  
+  saveUserData = function (authData) {
+    console.log("usser data saved");
+    this.userData = authData;
+  };
+
+  getUserData = function () {
+    return this.userData;
+  };
+  
   load() {
     if (this.data) {
       // already loaded data

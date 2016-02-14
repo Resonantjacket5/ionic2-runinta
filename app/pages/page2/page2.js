@@ -1,17 +1,19 @@
 import {Page} from 'ionic/ionic';
-
+import {AuthService} from '../../providers/auth-service/auth-service';
 
 @Page({
-  templateUrl: 'build/pages/page2/page2.html',
+  templateUrl: 'build/pages/page2/page2.html'//,
+  //providers: [AuthService]
 })
 export class Page2 {
   
   
   
-  constructor() {
+  constructor(auth: AuthService) {
     var _this =this;
-    this.friends = [];
     
+    this.auth = auth;
+    this.friends = [];
     this.friends = [
       {
         name: "Sam",
@@ -29,7 +31,8 @@ export class Page2 {
   };
   
   fetchFriends = function() {
-    let ref = new Firebase("https://runinto.firebaseio.com/users/b5c16695-bf5e-490f-9cb9-21d16e16b668");
+    let ref = this.auth.getCurrentUserRef();
+        //new Firebase("https://runinto.firebaseio.com/users/b5c16695-bf5e-490f-9cb9-21d16e16b668");
 
     
     let usersRef = ref.child("friends");
@@ -75,5 +78,10 @@ export class Page2 {
   
   onError= function (error){
     console.log("error"); 
+  };
+
+  logOut = function () {
+    let fireRef = new Firebase("https://runinto.firebaseio.com");
+    fireRef.unauth();
   };
 }
