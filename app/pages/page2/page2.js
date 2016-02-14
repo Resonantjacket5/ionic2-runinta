@@ -71,10 +71,36 @@ export class Page2 {
   
   askUserLocation() {
     navigator.geolocation.getCurrentPosition(this.onSuccess,this.onError);
+    this.pushLocation();
   };
+                              
+
   
   onSuccess = function(position) {
     _this.coordinates.latitude= position.coords.latitude;
+    _this.coordinates.longitude = position.coords.longitude;
+  };
+
+  // function called on success, from askUserLocation
+  // to push 
+  // should move to auth-service or stand alone Service later
+  pushLocation =function() {
+    let geoFire = new GeoFire(this.auth.getFireBaseRef().child("geofire");
+    console.log(geoFire);
+    
+    
+    geoFire.set(this.auth.getUserID(), [ _this.coordinates.latitude, _this.coordinates.longitude]).then(function() {
+      console.log("Provided key has been added to GeoFire");
+    }, function (error) {
+      console.log("Error: "+error);
+    });//*/
+    
+    /*
+    geoFire.set("some_key", [37.785326, -122.405696]).then(function() {
+      console.log("Provided key has been added to GeoFire");
+    }, function(error) {
+      console.log("Error: " + error);
+    });//*/
   };
   
   onError= function (error){

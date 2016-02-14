@@ -18,18 +18,29 @@ export class AuthService {
     return this;
   }
   
-  getFireRef = function () {
+  // return singleton instance of FireBase reference
+  getFireBaseRef = function () {
     return this.ref;
   };
 
+  // return firebase reference to <site>/users/<uid>
   getCurrentUserRef = function() {
     return this.ref.child("users").child(this.userData.uid);
   };
   
+  // return firebase reference to <site>/users
   getUsersRef = function() {
     return this.ref.child('users');
   };
+
+  getUserID = function () {
+    return this.userData.uid;
+  };
   
+
+  // called by login functions
+  // and saves firebase authData locally
+  // to AuthService.userData
   saveUserData = function (authData) {
     console.log("usser data saved");
     this.userData = authData;
