@@ -2,8 +2,9 @@ import {Page} from 'ionic/ionic';
 import {AuthService} from '../../providers/auth-service/auth-service';
 
 @Page({
-  templateUrl: 'build/pages/page2/page2.html'//,
-  //providers: [AuthService]
+  templateUrl: 'build/pages/page2/page2.html'
+  // implicitly provided by Tabs.js
+  // providers: [AuthService]
 })
 export class Page2 {
   

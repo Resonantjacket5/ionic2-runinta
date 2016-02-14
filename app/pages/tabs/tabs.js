@@ -36,7 +36,7 @@ export class TabsPage {
     */
     this.ref.onAuth(function(authData){
       if (authData) {
-        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+        console.log("(Tab) User " + authData.uid + " is logged in with " + authData.provider);
         self.auth.saveUserData(authData)
       } else {
         console.log("User is logged out");
