@@ -12,8 +12,11 @@
       <input type="password">
     </ion-input>
     <ion-label>{{user.email}} {{user.password}}</ion-label>
-    <button (click)="doLogin()">
-      Login
-    </button>
   </ion-list>
+  <button (click)="doLogin()">
+    Login
+  </button>
+  <button (click)="openSignupModal()">
+    Sign Up
+  </button>
 </ion-content>

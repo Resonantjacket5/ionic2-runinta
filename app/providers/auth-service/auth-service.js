@@ -49,6 +49,29 @@ export class AuthService {
   getUserData = function () {
     return this.userData;
   };
+
+
+
+  doLogin (_email,_password) {
+    let _this =this;
+    return new Promise( function(resolve,reject){
+      _this.ref.authWithPassword({
+        email : _email,
+        password: _password
+      }, function (error, authData){
+        if (error) {
+          console.log("Login Failed!", error);
+          reject(Error("It broke!"));
+        } else {
+          console.log("Authenticated successfuly with payload:", authData);     
+          // when login correctly, save user Data and dismiss login modal
+          _this.saveUserData(authData);
+          resolve("succeed");
+          }
+        }
+      )
+    })
+  }
   
   load() {
     if (this.data) {
