@@ -38,11 +38,13 @@ export class SignupPage {
     this.signupUser.password = event.target.value; 
   }
   
-  userInput(event){
+  nameInput(event){
     this.signupUser.name = event.target.value;
   }
   
   doSignup () {
+    
+    let _this = this;
     this.ref.createUser({
       email: this.signupUser.email,
       password: this.signupUser.password
@@ -55,8 +57,23 @@ export class SignupPage {
         
         // should probably say succeed
         
-        // dismiss signup page
-        _this.dismiss(userData);
+        _this.auth.doLogin(_this.signupUser.email,_this.signupUser.password)
+        .then(function(succeed){
+          
+          // after logged in 
+          // add user to public list
+          console.log("Login succeed in signup.js");
+          
+          _this.ref.child('userspublic').child(_this.auth.getUserID()).set({
+          name: _this.signupUser.name,
+          uid: _this.auth.getUserID()});
+          // dismiss signup page
+          _this.dismiss();
+        })
+        .catch( function(error){
+          console.log("fail login on signup.js");
+        });
+        
       }
     });
   }
