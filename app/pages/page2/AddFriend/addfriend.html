@@ -11,13 +11,18 @@
       <ion-label>Search Friend</ion-label>
       <input type="text">
     </ion-input>
-    <ion-item *ngFor="#friend of friends">
+    
+    <ion-item-sliding *ngFor="#friend of friends">
+      <ion-item>
       {{friend.name}}  
       {{friend.age}}
-    </ion-item>
-    /*<button (click)="something()">
-      add weird
-    </button>*/
-
+      {{friend.uid}}
+      </ion-item>
+      <ion-item-options>
+        <button (click)="addFriend(friend)" primary>
+          Add: {{friend.name}}
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

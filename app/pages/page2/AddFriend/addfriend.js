@@ -37,6 +37,36 @@ export class AddFriendPage {
       console.log("The read failed: " + errorObject.code);
     });
   }
+  
+  addFriend(friend){
+    let userRef = this.auth.getCurrentUserRef();
+    let friends = [];
+    
+    // fetch friends list from fireBase 
+    userRef.child('friends').on("value", function (snapshot) {
+      friends = snapshot.val();
+      if(friends == null)
+        friends = [];
+      console.log(friends);
+      
+    }, function (errorobject) {
+      console.log("The read failed: "+errorobject.code);
+    });
+    
+    
+    // modify local array of friends
+    // if cannot find friend
+    if (friends.indexOf(friend) == -1)
+    {
+      friends.push(friend);
+    }
+    console.log("friends");
+    console.log(friends);
+    
+    // set firebase friends list same as local
+    userRef.child('friends').set(friends);
+    
+  }
 
   /*something(){
     let ref = this.auth.getFireBaseRef();

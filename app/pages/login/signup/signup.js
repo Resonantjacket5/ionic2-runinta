@@ -65,8 +65,15 @@ export class SignupPage {
           console.log("Login succeed in signup.js");
           
           _this.ref.child('userspublic').child(_this.auth.getUserID()).set({
-          name: _this.signupUser.name,
-          uid: _this.auth.getUserID()});
+            name: _this.signupUser.name,
+            uid: _this.auth.getUserID()});
+          
+          _this.ref.child('users').child(_this.auth.getUserID()).set({
+            name: _this.signupUser.name,
+            friends: []
+          });
+          
+          
           // dismiss signup page
           _this.dismiss();
         })

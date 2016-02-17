@@ -112,7 +112,9 @@ export class Page2 {
     fireRef.unauth();
   };
 
-  
+  openAddFriendPage = function () {
+    this.nav.push(AddFriendPage);  
+  };
 
   
   openAddFriendModal = function () {
