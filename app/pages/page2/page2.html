@@ -10,6 +10,8 @@
     <ion-item *ngFor="#friend of friends">
       {{friend.name}}  
       {{friend.age}}
+      {{friend.uid}}
+      {{friend.latitude}}  {{friend.longitude}}
     </ion-item>
     <ion-item>
       GPS coordinates: {{coordinates.latitude}}, {{coordinates.longitude}}
@@ -19,6 +21,9 @@
     </button>
     <button (click)="fetchFriends()">
       Fetch Friends
+    </button>
+    <button (click)="updateFriendsLocation()">
+      Update Friends
     </button>
     <button (click)="logOut()">
       Log Out
